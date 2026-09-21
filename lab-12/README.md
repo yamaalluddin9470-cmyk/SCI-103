@@ -10,7 +10,14 @@
 
 ## 2. GlowScript URL (Shared)
 
-**URL:** ______________________________________
+### Part A
+https://www.glowscript.org/#/user/yamaalluddin9470/folder/LAB12/program/LAB12PartA
+
+### Part B
+https://www.glowscript.org/#/user/yamaalluddin9470/folder/LAB12/program/LAB12PartB
+
+### Part C
+https://www.glowscript.org/#/user/yamaalluddin9470/folder/LAB12/program/LAB12PartC
 
 ---
 
@@ -60,7 +67,7 @@
 
 ## 4. Discussion
 
-จากการจำลอง Part A พบว่าสนามแม่เหล็กรอบลวดตรงมีทิศทางเป็นวงกลมรอบลวด ซึ่งตรงกับกฎมือขวา ถ้าเปลี่ยนทิศทางของกระแสไฟฟ้า ทิศทางของสนามแม่เหล็กก็จะเปลี่ยนเป็นทิศตรงกันข้าม
+จากการจำลอง Part A พบว่าสนามแม่เหล็กรอบลวดตรงมีทิศทางเป็นวงกลมรอบลวด ซึ่งตรงกับกฎมือขวา ถ้าเปลี่ยนทิศทางของกระ��สไฟฟ้า ทิศทางของสนามแม่เหล็กก็จะเปลี่ยนเป็นทิศตรงกันข้าม
 
 ความแรงของสนามแม่เหล็กรอบลวดตรงเป็นไปตามสมการ **B = μ₀I / (2πr)** ดังนั้นสนามแม่เหล็กจะเพิ่มขึ้นเมื่อกระแสไฟฟ้าเพิ่มขึ้น และจะลดลงเมื่อระยะห่างจากลวดเพิ่มขึ้น
 
@@ -94,3 +101,35 @@
 ความแรงของสนามแม่เหล็กรอบลวดตรงคำนวณได้จากสมการ **B = μ₀I / (2πr)** สนามแม่เหล็กจะมีความแรงเพิ่มขึ้นเมื่อกระแสไฟฟ้าเพิ่มขึ้น และจะอ่อนลงเมื่อระยะห่างจากลวดเพิ่มขึ้น
 
 นอกจากนี้ ผมได้ศึกษาสนามแม่เหล็กของ magnetic dipole ซึ่งมีลักษณะคล้ายสนามของแท่งแม่เหล็ก การใช้ GlowScript VPython ช่วยให้เห็นทิศทางและรูปแบบของสนามแม่เหล็กได้ชัดเจนขึ้น
+
+---
+
+## ภาคผนวก
+
+### สมการที่ใช้ในการทดลอง
+
+**B = μ₀I / (2πr)**
+
+สมการนี้ใช้คำนวณความแรงของสนามแม่เหล็กรอบลวดตรง โดยสนามแม่เหล็กจะแรงขึ้นเมื่อกระแสไฟฟ้าเพิ่มขึ้น และจะอ่อนลงเมื่อระยะห่างจากลวดเพิ่มขึ้น
+
+### ภาพผลการทดลอง
+
+- ภาพที่ 1: ผลการทดลอง Part A [ใส่ภาพที่นี่]
+- ภาพที่ 2: ผลการทดลอง Part B [ใส่ภาพที่นี่]
+- ภาพที่ 3: ผลการทดลอง Part C [ใส่ภาพที่นี่]
+
+---
+
+## อ้างอิง
+
+1. GlowScript VPython: Lab 12 Part A.  
+   https://www.glowscript.org/#/user/yamaalluddin9470/folder/LAB12/program/LAB12PartA
+
+2. GlowScript VPython: Lab 12 Part B.  
+   https://www.glowscript.org/#/user/yamaalluddin9470/folder/LAB12/program/LAB12PartB
+
+3. GlowScript VPython: Lab 12 Part C.  
+   https://www.glowscript.org/#/user/yamaalluddin9470/folder/LAB12/program/LAB12PartC
+
+4. SCI-103, Lab 12: Visualization of Magnetic Fields using VPython.  
+   https://github.com/komsan-k/SCI-103/blob/main/lab/lab-12-magnetic-field/README.md
