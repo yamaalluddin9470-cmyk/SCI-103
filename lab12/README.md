@@ -131,7 +131,7 @@ $$
 
 **ภาพผลการทดลอง Part C:**
 
-![ผลการทดลอง Part C: เส้นสนามของ magnetic dipole](images/lab12:part-B.png)
+![ผลการทดลอง Part C: เส้นสนามของ magnetic dipole](images/lab12:part-C.png)
 
 *รูปที่ 3: เส้นสนามที่เริ่มจากรอบขั้วเหนือ*
 
