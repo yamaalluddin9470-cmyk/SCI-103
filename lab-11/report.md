@@ -1,4 +1,4 @@
-# Report-Lab8: Visualization of Electric Fields using VPython
+# Report-Lab11: Visualization of Electric Fields using VPython
 
 ## 1. Achievement
 
