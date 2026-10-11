@@ -24,29 +24,30 @@ dt = 0.02               # time step per frame
 mode = 'Linear (x)'     # polarization
 direction = 1           # +1 : wave travels along +z, -1 : along -z
 running = True
+front_view = False      # True while looking along the z axis
 show_E = True
 show_B = True
 show_S = True
-t = 0.0
+wt = 0.0                # accumulated omega*t, so changing lambda does not make the wave jump
 
 # ------------------------------------------------------------ scene
-scene.title = "EM wave: E (red), B (blue), S = E x B (green)"
+scene.title = "EM wave: E (red), B (blue), S = E x B (green), propagation axis z (gray)"
 scene.width = 900
 scene.height = 540
 scene.background = color.white
-scene.center = vec(0, 0, N * dz / 2)
+scene.center = vec(0, 0, (N - 1) * dz / 2)
 scene.range = 4.2
 scene.forward = vec(-0.6, -0.35, -0.75)
 scene.up = vec(0, 1, 0)
 
-L = N * dz
-# axes: x = E direction, y = B direction (for linear-x), z = propagation
+L = (N - 1) * dz        # length of the sampled wave (8 = 4 wavelengths for lambda = 2)
+# axes: x = E direction, y = B direction (for linear-x), z = propagation (gray, so green is only S)
 arrow(pos=vec(0, 0, 0), axis=vec(1.6, 0, 0), color=color.red, shaftwidth=0.03)
 arrow(pos=vec(0, 0, 0), axis=vec(0, 1.6, 0), color=color.blue, shaftwidth=0.03)
-arrow(pos=vec(0, 0, 0), axis=vec(0, 0, L + 0.4), color=color.green, shaftwidth=0.03)
+arrow(pos=vec(0, 0, 0), axis=vec(0, 0, L + 0.6), color=color.gray(0.45), shaftwidth=0.02)
 label(pos=vec(1.8, 0, 0), text="x", box=False, color=color.red, height=14)
 label(pos=vec(0, 1.8, 0), text="y", box=False, color=color.blue, height=14)
-label(pos=vec(0, 0, L + 0.7), text="z (k)", box=False, color=color.green, height=14)
+label(pos=vec(0, 0, L + 0.9), text="z (k)", box=False, color=color.gray(0.3), height=14)
 
 E_arrows = []
 B_arrows = []
@@ -58,7 +59,7 @@ for i in range(N):
     B_arrows.append(arrow(pos=vec(0, 0, z), axis=vec(0, 0, 0), color=color.blue,
                           shaftwidth=0.04))
     S_arrows.append(arrow(pos=vec(0, 0, z), axis=vec(0, 0, 0), color=color.green,
-                          shaftwidth=0.07))
+                          shaftwidth=0.08, headwidth=0.22, headlength=0.25))
 
 # curves through the arrow tips make the sinusoid easy to see
 E_curve = curve(color=color.red, radius=0.012)
@@ -68,7 +69,7 @@ for i in range(N):
     B_curve.append(pos=vec(0, 0, i * dz))
 
 # tip of E at the last sample point with a trail: shows the tip trajectory (line or circle)
-tip = sphere(pos=vec(0, 0, (N - 1) * dz), radius=0.08, color=color.orange,
+tip = sphere(pos=vec(0, 0, L), radius=0.08, color=color.orange,
              make_trail=True, retain=120, trail_radius=0.02)
 
 # ------------------------------------------------------------ physics
@@ -98,7 +99,13 @@ def set_mode(m):
 
 def set_dir(m):
     global direction
-    direction = 1 if m.selected == '+z' else -1
+    global wt
+    new_direction = 1 if m.selected == '+z' else -1
+    if new_direction != direction:
+        wt = -wt            # keeps phase = k z - direction * wt unchanged, so the wave does not jump
+    direction = new_direction
+    if front_view:
+        view_front(None)    # stay facing the oncoming wave
     tip.clear_trail()
     update_info()
 
@@ -131,13 +138,18 @@ def toggle_S(cb):
 
 
 def view_3d(b):
+    global front_view
+    front_view = False
     scene.forward = vec(-0.6, -0.35, -0.75)
     scene.up = vec(0, 1, 0)
 
 
 def view_front(b):
-    # look at the xy-plane from +z, facing the oncoming wave (clockwise = RH, optics convention)
-    scene.forward = vec(0, 0, -1)
+    # look along the z axis facing the oncoming wave: from +z for a +z wave, from -z for a -z wave
+    # (seen this way RH turns clockwise and LH counter-clockwise, optics convention)
+    global front_view
+    front_view = True
+    scene.forward = vec(0, 0, -direction)
     scene.up = vec(0, 1, 0)
 
 
@@ -156,7 +168,7 @@ checkbox(text="B ", checked=True, bind=toggle_B)
 checkbox(text="S ", checked=True, bind=toggle_S)
 scene.append_to_caption("   View: ")
 button(text="3D", bind=view_3d)
-button(text="Face the wave (from +z)", bind=view_front)
+button(text="Face the wave", bind=view_front)
 scene.append_to_caption("\n\n")
 info = wtext(text="")
 
@@ -184,16 +196,16 @@ update_info()
 # ------------------------------------------------------------ main loop
 while True:
     rate(50)
-    if not running:
-        continue
-    t += dt
-    E_curve.visible = show_E
-    B_curve.visible = show_B
     k = 2 * pi / lam
     omega = c * k                       # c = lambda * f  ->  omega = c k
+    if running:
+        wt += omega * dt
+    # redraw even while paused, so the checkboxes, menus and views still respond
+    E_curve.visible = show_E
+    B_curve.visible = show_B
     for i in range(N):
         z = i * dz
-        phase = k * z - direction * omega * t
+        phase = k * z - direction * wt
         Ex, Ey = E_components(phase)
         Bx, By, Bz = B_from_E(Ex, Ey)
         Ev = vec(Ex, Ey, 0)
