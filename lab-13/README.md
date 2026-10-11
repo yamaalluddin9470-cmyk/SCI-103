@@ -20,13 +20,16 @@
 
 ## 2. GlowScript URL (Shared)
 
-<!-- TODO: สร้างโปรแกรมใน glowscript.org (Create New Program → คงบรรทัดแรก "Web VPython 3.2" ไว้
-     → วางโค้ดจาก em_wave_sim.py ต่อจากบรรทัดนั้น → Run) แล้วนำลิงก์ที่แชร์มาวางแทนบรรทัดด้านล่าง -->
+<!-- TODO: สร้างโปรแกรมใน glowscript.org (Create New Program → ลบข้อความเดิมในตัวแก้ไขทั้งหมด
+     → วางโค้ดจาก em_wave_glowscript.py ทั้งไฟล์ → Run) แล้วนำลิงก์ที่แชร์มาวางแทนบรรทัดด้านล่าง -->
 
 ### Part A–C (โปรแกรมเดียว เลือกโหมดจากเมนู)
 [วางลิงก์ GlowScript ที่นี่]
 
-โค้ด: [em_wave_sim.py](em_wave_sim.py) (เขียนให้รันได้ทั้งบน glowscript.org และบนเครื่องด้วย `pip install vpython` แล้ว `python3 em_wave_sim.py`)
+โค้ด:
+
+- [em_wave_glowscript.py](em_wave_glowscript.py) สำหรับ glowscript.org (บรรทัดแรกคือ `Web VPython 3.2`)
+- [em_wave_sim.py](em_wave_sim.py) โค้ดเดียวกันสำหรับรันบนเครื่อง: `pip install vpython` แล้ว `python3 em_wave_sim.py`
 
 ---
 

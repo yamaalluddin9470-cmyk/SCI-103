@@ -1,10 +1,8 @@
 # GlowScript 3.2 VPython
 # Lab 13 – Interactive EM wave simulation (E, B, Poynting vector, polarization)
 #
-# Run it in either place with the same code:
-#   1. glowscript.org -> Create New Program, keep the editor's first line
-#      ("Web VPython 3.2"), paste everything below it, then Run
-#   2. locally        -> pip install vpython ; python3 em_wave_sim.py
+# Local version: pip install vpython ; python3 em_wave_sim.py
+# For glowscript.org use em_wave_glowscript.py (same code, GlowScript header).
 #
 # Units: arbitrary display units with c = 1 (so B0 = E0/c = E0 and B is visible).
 # In real SI units B0 = E0/c ~ 3e-9 E0, and omega = 2*pi*c/lambda is so large that
